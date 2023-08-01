@@ -11,4 +11,5 @@ struct HabitType: Identifiable, Codable {
     var id = UUID()
     let name: String
     let icone: String
+    
 }
