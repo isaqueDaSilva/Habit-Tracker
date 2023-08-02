@@ -22,7 +22,11 @@ struct ContentView: View {
             List {
                 Section {
                     ForEach(searchHabit) { habit in
-                        
+                        NavigationLink(destination: {
+                            
+                        }, label: {
+                            
+                        })
                     }
                     .onDelete(perform: removeRows)
                 }
@@ -36,6 +40,9 @@ struct ContentView: View {
                     Image(systemName: "plus")
                 })
             }
+            .sheet(isPresented: $creatingNewHabit, content: {
+                
+            })
             .toolbar {
                 ToolbarItem(placement: .navigationBarLeading, content: {
                     EditButton()
