@@ -8,13 +8,44 @@
 import SwiftUI
 
 struct ContentView: View {
+    @StateObject var habitsType = NewHabitType()
+    @State private var searchTerm = ""
+    @State private var creatingNewHabit = false
+    
+    var searchHabit: [HabitType] {
+        guard !searchTerm.isEmpty else { return habitsType.habits }
+        return habitsType.habits.filter { $0.name.contains(searchTerm) }
+    }
+    
     var body: some View {
         NavigationView {
             List {
-                
+                Section {
+                    ForEach(searchHabit) { habit in
+                        
+                    }
+                    .onDelete(perform: removeRows)
+                }
             }
             .navigationTitle("Habit Tracker")
+            .searchable(text: $searchTerm, prompt: "Search Habit")
+            .toolbar {
+                Button(action: {
+                    creatingNewHabit = true
+                }, label: {
+                    Image(systemName: "plus")
+                })
+            }
+            .toolbar {
+                ToolbarItem(placement: .navigationBarLeading, content: {
+                    EditButton()
+                })
+            }
         }
+    }
+    
+    func removeRows(of offset: IndexSet) {
+        habitsType.habits.remove(atOffsets: offset)
     }
 }
 
