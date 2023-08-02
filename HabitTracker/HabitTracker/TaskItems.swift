@@ -1,5 +1,5 @@
 //
-//  Habit.swift
+//  TaskItems.swift
 //  HabitTracker
 //
 //  Created by Isaque da Silva on 01/08/23.
@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct Task: Identifiable, Codable {
+struct TaskItems: Identifiable, Codable {
     var id = UUID()
     
     let name: String
