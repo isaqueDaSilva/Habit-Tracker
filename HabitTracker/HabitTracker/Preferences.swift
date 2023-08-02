@@ -9,16 +9,17 @@ import Foundation
 
 enum Priority: String, Codable, CaseIterable {
     case none = "None"
-    case low = "Low"
-    case medium = "Medium"
-    case high = "Hight"
+    case low = "!"
+    case medium = "!!"
+    case high = "!!!"
 }
 
-enum GoalPerWeek: String, Codable, CaseIterable {
-    case oneTime = "Once a Week"
-    case twoTimes = "Twice a Week"
-    case treeTimes = "Three Times a week"
-    case fourTimes = "Four Times a Week"
-    case fiveTimes = "Five Times a Week"
-    case sixTimes = "Six Times a Week"
+enum GoalPerWeek: Int, Codable, CaseIterable {
+    case oneTime = 1
+    case twoTimes = 2
+    case treeTimes = 3
+    case fourTimes = 4
+    case fiveTimes = 5
+    case sixTimes = 6
+    case allWeek = 7
 }
