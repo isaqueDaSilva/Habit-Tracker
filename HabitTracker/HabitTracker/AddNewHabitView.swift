@@ -11,7 +11,7 @@ struct AddNewHabitView: View {
     @Environment(\.dismiss) var dismiss
     @ObservedObject var habit: AddHabitType
     
-    @State private var icone = "book.fill"
+    @State private var icone = images.names[0]
     @State private var name = ""
     @State private var notes = ""
     @State private var startingDate = Date.now
@@ -19,13 +19,17 @@ struct AddNewHabitView: View {
     @State private var endDate = Date.now
     @State private var priority: Priority = .none
     
-    var images = ImagesNames()
+    static var images = ImagesNames()
     var body: some View {
         NavigationView {
             Form {
                 Section {
                     TextField("Name of Habit", text: $name)
-                    TextField("Notes", text: $notes)
+                    Picker("Select the Habit Icone", selection: $icone) {
+                        ForEach(AddNewHabitView.images.names, id: \.self) { image in
+                            Image(systemName: image)
+                        }
+                    }
                 }
                 
                 Section {
@@ -42,19 +46,16 @@ struct AddNewHabitView: View {
                     }
                 }
                 
-                Section("Select an icon for the new habit:") {
-                    Picker("Select Icone", selection: $icone) {
-                        ForEach(images.names, id: \.self) { image in
-                            Image(systemName: image)
-                        }
-                    }
+                Section("Notes:") {
+                    TextEditor(text: $notes)
                 }
             }
             .navigationTitle("New Habit")
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
-                Button("Add", action: {
-                    
+                Button("OK", action: {
+                    let item = HabitType(icone: icone, name: name, note: notes, startDate: startingDate, endDate: endDate, priority: priority)
+                    habit.habits.append(item)
                     dismiss()
                 })
             }
@@ -64,8 +65,7 @@ struct AddNewHabitView: View {
                         dismiss()
                     }, label: {
                         HStack {
-                            Image(systemName: "chevron.left")
-                            Text("Back")
+                            Text("Cancel")
                         }
                     })
                 }

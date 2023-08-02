@@ -23,9 +23,13 @@ struct ContentView: View {
                 Section {
                     ForEach(searchHabit) { habit in
                         NavigationLink(destination: {
-                            
+                            Text(habit.name)
                         }, label: {
-                            
+                            HStack {
+                                Image(systemName: habit.icone)
+                                Text(habit.name)
+                                    .font(.title.bold())
+                            }
                         })
                     }
                     .onDelete(perform: removeRows)

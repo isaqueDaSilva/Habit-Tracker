@@ -12,7 +12,6 @@ struct HabitType: Identifiable, Codable {
     let icone: String
     let name: String
     let note: String?
-    let startDate: Date
-    let endDate: Date?
     let priority: Priority
+    let goal: GoalPerWeek
 }
