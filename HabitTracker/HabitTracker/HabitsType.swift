@@ -9,7 +9,10 @@ import Foundation
 
 struct HabitType: Identifiable, Codable {
     var id = UUID()
-    let name: String
     let icone: String
-    let tasks: [TaskItems]?
+    let name: String
+    let note: String?
+    let startDate: Date
+    let endDate: Date?
+    let priority: Priority
 }

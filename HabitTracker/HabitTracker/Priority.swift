@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import SwiftUI
 
 enum Priority: String, Codable, CaseIterable {
     case none = "None"

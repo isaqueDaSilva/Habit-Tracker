@@ -7,7 +7,7 @@
 
 import Foundation
 
-class NewHabitType: ObservableObject {
+class AddHabitType: ObservableObject {
     @Published var habits = [HabitType]() {
         didSet {
             let encoder = JSONEncoder()

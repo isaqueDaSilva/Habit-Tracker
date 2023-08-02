@@ -9,10 +9,15 @@ import SwiftUI
 
 struct AddNewHabitView: View {
     @Environment(\.dismiss) var dismiss
-    @ObservedObject var habit: NewHabitType
+    @ObservedObject var habit: AddHabitType
     
-    @State private var name = ""
     @State private var icone = "book.fill"
+    @State private var name = ""
+    @State private var notes = ""
+    @State private var startingDate = Date.now
+    @State private var showingDatePicker = false
+    @State private var endDate = Date.now
+    @State private var priority: Priority = .none
     
     var images = ImagesNames()
     var body: some View {
@@ -20,28 +25,39 @@ struct AddNewHabitView: View {
             Form {
                 Section {
                     TextField("Name of Habit", text: $name)
+                    TextField("Notes", text: $notes)
+                }
+                
+                Section {
+                    Toggle(isOn: $showingDatePicker.animation(), label: {
+                        HStack {
+                            Image(systemName: "calendar")
+                            Text("Date")
+                        }
+                    })
                     
+                    if showingDatePicker {
+                        DatePicker("Select Date:", selection: $startingDate)
+                            .datePickerStyle(.graphical)
+                    }
+                }
+                
+                Section("Select an icon for the new habit:") {
                     Picker("Select Icone", selection: $icone) {
                         ForEach(images.names, id: \.self) { image in
                             Image(systemName: image)
                         }
                     }
-                    .pickerStyle(.menu)
                 }
-                
-                VStack{
-                    Button("Add", action: {
-                        let item = HabitType(name: name, icone: icone, tasks: nil)
-                        habit.habits.append(item)
-                        dismiss()
-                    })
-                    .frame(maxWidth: 430)
-                    .buttonStyle(.borderedProminent)
-                }
-                .listRowBackground(Color(CGColor(red: 240, green: 240, blue: 246, alpha: 0)))
             }
             .navigationTitle("New Habit")
             .navigationBarTitleDisplayMode(.inline)
+            .toolbar {
+                Button("Add", action: {
+                    
+                    dismiss()
+                })
+            }
             .toolbar {
                 ToolbarItemGroup(placement: .navigationBarLeading) {
                     Button(action: {
@@ -61,6 +77,6 @@ struct AddNewHabitView: View {
 
 struct AddNewHabitView_Previews: PreviewProvider {
     static var previews: some View {
-        AddNewHabitView(habit: NewHabitType())
+        AddNewHabitView(habit: AddHabitType())
     }
 }

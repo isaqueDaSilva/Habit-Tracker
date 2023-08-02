@@ -16,6 +16,7 @@ struct ImagesNames {
         "music.quarternote.3",
         "fork.knife",
         "curlybraces",
+        "ellipsis.curlybraces",
         "laurel.trailing",
         "figure.2.and.child.holdinghands",
         "creditcard",

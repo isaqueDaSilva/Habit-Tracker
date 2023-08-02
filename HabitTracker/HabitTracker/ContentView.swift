@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct ContentView: View {
-    @StateObject var habitsType = NewHabitType()
+    @StateObject var habitsType = AddHabitType()
     @State private var searchTerm = ""
     @State private var creatingNewHabit = false
     
