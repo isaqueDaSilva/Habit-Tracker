@@ -41,7 +41,7 @@ struct ContentView: View {
                 })
             }
             .sheet(isPresented: $creatingNewHabit, content: {
-                
+                AddNewHabitView(habit: AddHabitType())
             })
             .toolbar {
                 ToolbarItem(placement: .navigationBarLeading, content: {
