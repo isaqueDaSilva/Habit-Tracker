@@ -20,20 +20,18 @@ struct ContentView: View {
     var body: some View {
         NavigationView {
             List {
-                Section {
-                    ForEach(searchHabit) { habit in
-                        NavigationLink(destination: {
+                ForEach(searchHabit) { habit in
+                    NavigationLink(destination: {
+                        Text(habit.name)
+                    }, label: {
+                        HStack {
+                            Text(habit.priority.rawValue)
+                            Image(systemName: habit.icone)
                             Text(habit.name)
-                        }, label: {
-                            HStack {
-                                Image(systemName: habit.icone)
-                                Text(habit.name)
-                                    .font(.title.bold())
-                            }
-                        })
-                    }
-                    .onDelete(perform: removeRows)
+                        }
+                    })
                 }
+                .onDelete(perform: removeRows)
             }
             .navigationTitle("Habit Tracker")
             .searchable(text: $searchTerm, prompt: "Search Habit")
@@ -44,14 +42,14 @@ struct ContentView: View {
                     Image(systemName: "plus")
                 })
             }
-            .sheet(isPresented: $creatingNewHabit, content: {
-                AddNewHabitView(habit: AddHabitType())
-            })
             .toolbar {
                 ToolbarItem(placement: .navigationBarLeading, content: {
                     EditButton()
                 })
             }
+            .sheet(isPresented: $creatingNewHabit, content: {
+                AddNewHabitView(habit: habitsType)
+            })
         }
     }
     

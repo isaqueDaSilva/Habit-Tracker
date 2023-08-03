@@ -10,18 +10,15 @@ import Foundation
 class AddHabitType: ObservableObject {
     @Published var habits = [HabitType]() {
         didSet {
-            let encoder = JSONEncoder()
-            if let encoderItem = try? encoder.encode(habits) {
+            if let encoderItem = try? JSONEncoder().encode(habits) {
                 UserDefaults.standard.set(encoderItem, forKey: "Habit Item")
             }
         }
     }
     
     init() {
-        let decoder = JSONDecoder()
-        
         if let saveHabits = UserDefaults.standard.data(forKey: "Habit Item") {
-            if let decoderHabit = try? decoder.decode([HabitType].self, from: saveHabits) {
+            if let decoderHabit = try? JSONDecoder().decode([HabitType].self, from: saveHabits) {
                 habits = decoderHabit
                 return
             }

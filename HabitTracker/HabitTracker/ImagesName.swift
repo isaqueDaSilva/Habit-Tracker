@@ -7,8 +7,8 @@
 
 import Foundation
 
-struct ImagesNames {
-    let names = [
+struct ImagesNames: Codable {
+    var names = [
         "book.fill",
         "desktopcomputer",
         "figure.run",
