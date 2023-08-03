@@ -22,10 +22,10 @@ struct ContentView: View {
             List {
                 ForEach(searchHabit) { habit in
                     NavigationLink(destination: {
-                        Text(habit.name)
+                        DetailView(habits: habitsType, name: habit.name, notes: habit.note ?? "", goal: habit.goal, priority: habit.priority, icone: habit.icone)
                     }, label: {
                         HStack {
-                            Text(habit.priority.rawValue)
+                            Text(habit.priority != .none ? habit.priority.rawValue : "")
                             Image(systemName: habit.icone)
                             Text(habit.name)
                         }

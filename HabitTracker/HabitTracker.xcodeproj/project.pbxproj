@@ -19,6 +19,10 @@
 		7EC4B0242A79A31300E007FC /* HabitTrackerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EC4B0232A79A31300E007FC /* HabitTrackerTests.swift */; };
 		7EC4B02E2A79A31300E007FC /* HabitTrackerUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EC4B02D2A79A31300E007FC /* HabitTrackerUITests.swift */; };
 		7EC4B0302A79A31300E007FC /* HabitTrackerUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EC4B02F2A79A31300E007FC /* HabitTrackerUITestsLaunchTests.swift */; };
+		7ED175922A7B2D160092B581 /* DetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7ED175912A7B2D160092B581 /* DetailView.swift */; };
+		7ED175942A7B53AF0092B581 /* ActivityRecord.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7ED175932A7B53AF0092B581 /* ActivityRecord.swift */; };
+		7ED175962A7B54E20092B581 /* ActivityRecordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7ED175952A7B54E20092B581 /* ActivityRecordView.swift */; };
+		7ED175982A7B554B0092B581 /* AddActivityRecord.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7ED175972A7B554B0092B581 /* AddActivityRecord.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -54,6 +58,10 @@
 		7EC4B0292A79A31300E007FC /* HabitTrackerUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = HabitTrackerUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		7EC4B02D2A79A31300E007FC /* HabitTrackerUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HabitTrackerUITests.swift; sourceTree = "<group>"; };
 		7EC4B02F2A79A31300E007FC /* HabitTrackerUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HabitTrackerUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		7ED175912A7B2D160092B581 /* DetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailView.swift; sourceTree = "<group>"; };
+		7ED175932A7B53AF0092B581 /* ActivityRecord.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityRecord.swift; sourceTree = "<group>"; };
+		7ED175952A7B54E20092B581 /* ActivityRecordView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityRecordView.swift; sourceTree = "<group>"; };
+		7ED175972A7B554B0092B581 /* AddActivityRecord.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddActivityRecord.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -86,6 +94,8 @@
 			children = (
 				7EC4B0142A79A31100E007FC /* ContentView.swift */,
 				7E464FEE2A79FB1C0055B6F1 /* AddNewHabitView.swift */,
+				7ED175912A7B2D160092B581 /* DetailView.swift */,
+				7ED175952A7B54E20092B581 /* ActivityRecordView.swift */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -97,6 +107,8 @@
 				7E464FE62A79D23E0055B6F1 /* AddHabitType.swift */,
 				7E464FE42A79CE820055B6F1 /* Preferences.swift */,
 				7E464FF02A79FD760055B6F1 /* ImagesName.swift */,
+				7ED175932A7B53AF0092B581 /* ActivityRecord.swift */,
+				7ED175972A7B554B0092B581 /* AddActivityRecord.swift */,
 			);
 			name = Data;
 			sourceTree = "<group>";
@@ -289,11 +301,15 @@
 			buildActionMask = 2147483647;
 			files = (
 				7E464FF12A79FD760055B6F1 /* ImagesName.swift in Sources */,
+				7ED175922A7B2D160092B581 /* DetailView.swift in Sources */,
+				7ED175982A7B554B0092B581 /* AddActivityRecord.swift in Sources */,
 				7EC4B0152A79A31100E007FC /* ContentView.swift in Sources */,
 				7EC4B0132A79A31100E007FC /* HabitTrackerApp.swift in Sources */,
 				7E464FE52A79CE820055B6F1 /* Preferences.swift in Sources */,
+				7ED175942A7B53AF0092B581 /* ActivityRecord.swift in Sources */,
 				7E464FE12A79CBD70055B6F1 /* HabitType.swift in Sources */,
 				7E464FEF2A79FB1C0055B6F1 /* AddNewHabitView.swift in Sources */,
+				7ED175962A7B54E20092B581 /* ActivityRecordView.swift in Sources */,
 				7E464FE72A79D23E0055B6F1 /* AddHabitType.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
