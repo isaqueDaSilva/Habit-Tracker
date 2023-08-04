@@ -7,7 +7,14 @@
 
 import Foundation
 
+
+//Object
 struct Habit: Identifiable, Codable {
+    struct ActivityRecord: Codable {
+        let date: Date
+        let rate: Rate
+    }
+    
     var id = UUID()
     
     let name: String
@@ -15,6 +22,7 @@ struct Habit: Identifiable, Codable {
     let icone: String
     let repeatIn: Repeat
     let priority: Priority
+    var activityRecord = [ActivityRecord]()
 }
 
 
@@ -33,4 +41,10 @@ enum Priority: String, Codable, CaseIterable {
     case medium = "Medium Priority"
     case high = "High Priority"
     case none = "None Priority"
+}
+
+enum Rate: String, Codable, CaseIterable {
+    case bad = "😔"
+    case medium = "😐"
+    case good = "😁"
 }
