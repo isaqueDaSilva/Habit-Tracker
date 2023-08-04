@@ -16,6 +16,7 @@
 		7EC4B0302A79A31300E007FC /* HabitTrackerUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EC4B02F2A79A31300E007FC /* HabitTrackerUITestsLaunchTests.swift */; };
 		7EDC0BCC2A7C7E8500D9C712 /* Habit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EDC0BCB2A7C7E8500D9C712 /* Habit.swift */; };
 		7EDC0BCE2A7C826A00D9C712 /* HabitViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EDC0BCD2A7C826A00D9C712 /* HabitViewModel.swift */; };
+		7EDC0BD02A7C925500D9C712 /* NewHabitView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EDC0BCF2A7C925500D9C712 /* NewHabitView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -48,6 +49,7 @@
 		7EC4B02F2A79A31300E007FC /* HabitTrackerUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HabitTrackerUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		7EDC0BCB2A7C7E8500D9C712 /* Habit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Habit.swift; sourceTree = "<group>"; };
 		7EDC0BCD2A7C826A00D9C712 /* HabitViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HabitViewModel.swift; sourceTree = "<group>"; };
+		7EDC0BCF2A7C925500D9C712 /* NewHabitView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewHabitView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -79,6 +81,7 @@
 			isa = PBXGroup;
 			children = (
 				7EC4B0142A79A31100E007FC /* ContentView.swift */,
+				7EDC0BCF2A7C925500D9C712 /* NewHabitView.swift */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -290,6 +293,7 @@
 				7EDC0BCC2A7C7E8500D9C712 /* Habit.swift in Sources */,
 				7EC4B0152A79A31100E007FC /* ContentView.swift in Sources */,
 				7EC4B0132A79A31100E007FC /* HabitTrackerApp.swift in Sources */,
+				7EDC0BD02A7C925500D9C712 /* NewHabitView.swift in Sources */,
 				7EDC0BCE2A7C826A00D9C712 /* HabitViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
