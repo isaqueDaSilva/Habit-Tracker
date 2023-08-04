@@ -23,6 +23,19 @@ struct Habit: Identifiable, Codable {
     let repeatIn: Repeat
     let priority: Priority
     var activityRecord = [ActivityRecord]()
+    
+    static var iconeSystemName = [
+        "book.fill",
+        "books.vertical.fill",
+        "studentdesk",
+        "curlybraces",
+        "ellipsis.curlybraces",
+        "bed.double.fill",
+        "drop.fill",
+        "figure.run",
+        "figure.2.and.child.holdinghands",
+        "music.note"
+    ]
 }
 
 
