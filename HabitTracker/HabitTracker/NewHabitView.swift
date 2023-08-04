@@ -8,13 +8,21 @@
 import SwiftUI
 
 struct NewHabitView: View {
+    @ObservedObject var viewModel = HabitViewModel()
+    
+    var nome: String
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        NavigationView {
+            List {
+                
+            }
+            .navigationTitle(nome)
+        }
     }
 }
 
 struct NewHabitView_Previews: PreviewProvider {
     static var previews: some View {
-        NewHabitView()
+        NewHabitView(nome: "")
     }
 }

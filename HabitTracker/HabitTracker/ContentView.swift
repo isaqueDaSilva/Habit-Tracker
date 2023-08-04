@@ -11,6 +11,7 @@ struct ContentView: View {
     @ObservedObject var viewModel = HabitViewModel()
     
     @State private var searchTerm: String = ""
+    @State private var showingNewHabitView = false
     
     var search: [Habit] {
         guard !searchTerm.isEmpty else { return viewModel.habits }
@@ -27,9 +28,25 @@ struct ContentView: View {
                         Text(search.name)
                     })
                 }
+                .onDelete(perform: viewModel.removeRows)
             }
             .navigationTitle("Habit Tracker")
             .searchable(text: $searchTerm, prompt: "Search Habit")
+            .toolbar {
+                Button(action: {
+                    showingNewHabitView = true
+                }, label: {
+                    Image(systemName: "plus")
+                })
+            }
+            .toolbar {
+                ToolbarItem(placement: .navigationBarLeading) {
+                    EditButton()
+                }
+            }
+            .sheet(isPresented: $showingNewHabitView) {
+                
+            }
         }
     }
 }
