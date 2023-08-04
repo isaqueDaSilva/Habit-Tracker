@@ -18,7 +18,7 @@ class HabitViewModel: ObservableObject {
     
     @Published var activity = [Habit.ActivityRecord]() {
         didSet {
-            if let encoderActivity = try? JSONEncoder().encode(habits) {
+            if let encoderActivity = try? JSONEncoder().encode(activity) {
                 UserDefaults.standard.set(encoderActivity, forKey: "Activity")
             }
         }

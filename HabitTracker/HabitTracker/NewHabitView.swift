@@ -9,7 +9,7 @@ import SwiftUI
 
 struct NewHabitView: View {
     @Environment(\.dismiss) var dismiss
-    @ObservedObject var viewModel = HabitViewModel()
+    @ObservedObject var viewModel: HabitViewModel
     
     @State private var name: String = ""
     @State private var description: String = ""
@@ -71,6 +71,6 @@ struct NewHabitView: View {
 
 struct NewHabitView_Previews: PreviewProvider {
     static var previews: some View {
-        NewHabitView()
+        NewHabitView(viewModel: HabitViewModel())
     }
 }

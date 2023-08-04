@@ -17,12 +17,13 @@ struct ContentView: View {
         guard !searchTerm.isEmpty else { return viewModel.habits }
         return viewModel.habits.filter { $0.name.contains(searchTerm) }
     }
+
     var body: some View {
         NavigationView {
             List {
                 ForEach(search) { search in
                     NavigationLink(destination: {
-                        
+                        DetailView(viewModel: viewModel, name: search.name, description: search.description, icone: search.icone, repeatIn: search.repeatIn, priority: search.priority)
                     }, label: {
                         Image(systemName: search.icone)
                         Text(search.name)
@@ -45,7 +46,7 @@ struct ContentView: View {
                 }
             }
             .sheet(isPresented: $showingNewHabitView) {
-                
+                NewHabitView(viewModel: viewModel)
             }
         }
     }

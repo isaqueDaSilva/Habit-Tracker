@@ -10,7 +10,10 @@ import Foundation
 
 //Object
 struct Habit: Identifiable, Codable {
-    struct ActivityRecord: Codable {
+    
+    struct ActivityRecord: Identifiable, Codable {
+        var id = UUID()
+        
         let date: Date
         let rate: Rate
     }
