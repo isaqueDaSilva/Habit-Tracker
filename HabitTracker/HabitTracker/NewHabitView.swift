@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct NewHabitView: View {
+    @Environment(\.dismiss) var dismiss
     @ObservedObject var viewModel = HabitViewModel()
     
     @State private var name: String = ""
@@ -49,6 +50,21 @@ struct NewHabitView: View {
             }
             .navigationTitle("New Habit")
             .navigationBarTitleDisplayMode(.inline)
+            .toolbar {
+                Button(action: {
+                    viewModel.addNewHabit(name: name, description: description, icone: icone, repeatIn: repeatIn, priority: priority)
+                    dismiss()
+                }, label: {
+                    Text("OK")
+                })
+            }
+            .toolbar {
+                ToolbarItem(placement: .navigationBarLeading) {
+                    Button("Cancel", action: {
+                        dismiss()
+                    })
+                }
+            }
         }
     }
 }
