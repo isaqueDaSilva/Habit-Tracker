@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		7E9D84432A7CA90B00526C43 /* DetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E9D84422A7CA90A00526C43 /* DetailView.swift */; };
-		7E9D84452A7CAA7A00526C43 /* Arc.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E9D84442A7CAA7A00526C43 /* Arc.swift */; };
+		7E9D84452A7CAA7A00526C43 /* ProgressBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E9D84442A7CAA7A00526C43 /* ProgressBar.swift */; };
 		7E9D84472A7CADE300526C43 /* NewActivityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E9D84462A7CADE300526C43 /* NewActivityView.swift */; };
 		7EC4B0132A79A31100E007FC /* HabitTrackerApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EC4B0122A79A31100E007FC /* HabitTrackerApp.swift */; };
 		7EC4B0152A79A31100E007FC /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EC4B0142A79A31100E007FC /* ContentView.swift */; };
@@ -41,7 +41,7 @@
 
 /* Begin PBXFileReference section */
 		7E9D84422A7CA90A00526C43 /* DetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailView.swift; sourceTree = "<group>"; };
-		7E9D84442A7CAA7A00526C43 /* Arc.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Arc.swift; sourceTree = "<group>"; };
+		7E9D84442A7CAA7A00526C43 /* ProgressBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressBar.swift; sourceTree = "<group>"; };
 		7E9D84462A7CADE300526C43 /* NewActivityView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewActivityView.swift; sourceTree = "<group>"; };
 		7EC4B00F2A79A31100E007FC /* HabitTracker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HabitTracker.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7EC4B0122A79A31100E007FC /* HabitTrackerApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HabitTrackerApp.swift; sourceTree = "<group>"; };
@@ -90,7 +90,7 @@
 				7E9D84462A7CADE300526C43 /* NewActivityView.swift */,
 				7EDC0BCF2A7C925500D9C712 /* NewHabitView.swift */,
 				7E9D84422A7CA90A00526C43 /* DetailView.swift */,
-				7E9D84442A7CAA7A00526C43 /* Arc.swift */,
+				7E9D84442A7CAA7A00526C43 /* ProgressBar.swift */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -302,7 +302,7 @@
 				7EDC0BCC2A7C7E8500D9C712 /* Habit.swift in Sources */,
 				7E9D84432A7CA90B00526C43 /* DetailView.swift in Sources */,
 				7E9D84472A7CADE300526C43 /* NewActivityView.swift in Sources */,
-				7E9D84452A7CAA7A00526C43 /* Arc.swift in Sources */,
+				7E9D84452A7CAA7A00526C43 /* ProgressBar.swift in Sources */,
 				7EC4B0152A79A31100E007FC /* ContentView.swift in Sources */,
 				7EC4B0132A79A31100E007FC /* HabitTrackerApp.swift in Sources */,
 				7EDC0BD02A7C925500D9C712 /* NewHabitView.swift in Sources */,

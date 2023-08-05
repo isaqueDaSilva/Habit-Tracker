@@ -9,6 +9,7 @@ import SwiftUI
 
 struct DetailView: View {
     @State private var recordNewActivity = false
+    @State private var progress: CGFloat = 0
     @ObservedObject var viewModel: HabitViewModel
     let activity: Habit
     
@@ -30,14 +31,12 @@ struct DetailView: View {
             List{
                 Section {
                     ZStack {
-                        Circle()
-                            .stroke(lineWidth: 20)
-                            .fill(.black.opacity(0.3))
+                        ProgressBar(progress: $progress, color: .blue)
                             .padding([.top, .bottom, .horizontal])
-                        Arc(startAngle: Angle(degrees: 0), endAngle: Angle(degrees: 360), clockwise: true)
-                            .stroke(lineWidth: 20)
-                            .fill(.blue)
-                            .padding([.top, .bottom, .horizontal])
+                            .onAppear {
+                                progress = CGFloat(activityRecord.count / repeatIn.rawValue)
+                            }
+                        
                         Image(systemName: icone)
                             .font(.system(size: 80))
                     }
