@@ -9,13 +9,15 @@ import SwiftUI
 
 struct DetailView: View {
     @State private var recordNewActivity = false
-    @ObservedObject var viewModel = HabitViewModel()
+    @ObservedObject var viewModel: HabitViewModel
+    let activity: Habit
     
     var name: String
     var description: String
     var icone: String
     var repeatIn: Repeat
     var priority: Priority
+    var activityRecord: [Habit.ActivityRecord]
     
     var dateFormatter: DateFormatter {
         let formatter = DateFormatter()
@@ -64,7 +66,7 @@ struct DetailView: View {
                 }
                 
                 Section("Activity Records") {
-                    ForEach(viewModel.activity) { activity in
+                    ForEach(activityRecord) { activity in
                         HStack {
                             Text(dateFormatter.string(from: activity.date))
                             Spacer()
@@ -84,13 +86,14 @@ struct DetailView: View {
             })
         }
         .sheet(isPresented: $recordNewActivity) {
-            NewActivityView(viewModel: viewModel)
+            NewActivityView(viewModel: viewModel, activity: activity)
         }
     }
 }
 
 struct DetailView_Previews: PreviewProvider {
+    static let dummyData = Habit(name: "", description: "", icone: "", repeatIn: .oneTime, priority: .high)
     static var previews: some View {
-        DetailView(viewModel: HabitViewModel(), name: "", description: "", icone: "", repeatIn: .allWeek, priority: .high)
+        DetailView(viewModel: HabitViewModel(), activity: dummyData, name: "", description: "", icone: "", repeatIn: .oneTime, priority: .high, activityRecord: [Habit.ActivityRecord]())
     }
 }

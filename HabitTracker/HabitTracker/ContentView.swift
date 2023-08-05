@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct ContentView: View {
-    @ObservedObject var viewModel = HabitViewModel()
+    @StateObject var viewModel = HabitViewModel()
     
     @State private var searchTerm: String = ""
     @State private var showingNewHabitView = false
@@ -23,7 +23,7 @@ struct ContentView: View {
             List {
                 ForEach(search) { search in
                     NavigationLink(destination: {
-                        DetailView(viewModel: viewModel, name: search.name, description: search.description, icone: search.icone, repeatIn: search.repeatIn, priority: search.priority)
+                        DetailView(viewModel: viewModel, activity: search, name: search.name, description: search.description, icone: search.icone, repeatIn: search.repeatIn, priority: search.priority, activityRecord: search.activityRecord)
                     }, label: {
                         Image(systemName: search.icone)
                         Text(search.name)

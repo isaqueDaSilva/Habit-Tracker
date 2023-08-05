@@ -9,7 +9,10 @@ import Foundation
 
 
 //Object
-struct Habit: Identifiable, Codable {
+struct Habit: Identifiable, Codable, Equatable {
+    static func == (lhs: Habit, rhs: Habit) -> Bool {
+        return lhs.name == rhs.name && lhs.id == rhs.id
+    }
     
     struct ActivityRecord: Identifiable, Codable {
         var id = UUID()
@@ -18,7 +21,7 @@ struct Habit: Identifiable, Codable {
         let rate: Rate
     }
     
-    var id = UUID()
+    var id: Int = UUID().hashValue
     
     let name: String
     let description: String

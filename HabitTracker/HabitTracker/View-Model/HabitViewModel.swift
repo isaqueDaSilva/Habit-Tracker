@@ -16,14 +16,6 @@ class HabitViewModel: ObservableObject {
         }
     }
     
-    @Published var activity = [Habit.ActivityRecord]() {
-        didSet {
-            if let encoderActivity = try? JSONEncoder().encode(activity) {
-                UserDefaults.standard.set(encoderActivity, forKey: "Activity")
-            }
-        }
-    }
-    
     init() {
         if let saveHabit = UserDefaults.standard.data(forKey: "Habit") {
             if let decoderHabits = try? JSONDecoder().decode([Habit].self, from: saveHabit) {
@@ -32,14 +24,6 @@ class HabitViewModel: ObservableObject {
             }
         }
         habits = []
-        
-        if let saveActivity = UserDefaults.standard.data(forKey: "Activity") {
-            if let decoderActivity = try? JSONDecoder().decode([Habit.ActivityRecord].self, from: saveActivity) {
-                activity = decoderActivity
-                return
-            }
-        }
-        activity = []
     }
     
     func removeRows(at offsets: IndexSet) {
@@ -47,12 +31,16 @@ class HabitViewModel: ObservableObject {
     }
     
     func addNewHabit(name: String, description: String, icone: String, repeatIn: Repeat, priority: Priority) {
-        let habit = Habit(name: name, description: description, icone: icone, repeatIn: repeatIn, priority: priority, activityRecord: activity)
+        let habit = Habit(name: name, description: description, icone: icone, repeatIn: repeatIn, priority: priority)
         habits.append(habit)
     }
     
-    func addNewActivity(date: Date, rate: Rate) {
+    func addNewActivity(habit: Habit, date: Date, rate: Rate) {
+        let habit = habit
         let activitys = Habit.ActivityRecord(date: date, rate: rate)
-        activity.append(activitys)
+        
+        if let i = habits.firstIndex(of: habit) {
+            habits[i].activityRecord.append(activitys)
+        }
     }
 }

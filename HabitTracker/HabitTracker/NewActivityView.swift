@@ -10,6 +10,7 @@ import SwiftUI
 struct NewActivityView: View {
     @Environment(\.dismiss) var dismiss
     @ObservedObject var viewModel: HabitViewModel
+    let activity: Habit
     
     @State private var date = Date.now
     @State private var rate: Rate = .good
@@ -30,7 +31,7 @@ struct NewActivityView: View {
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 Button("OK", action: {
-                    viewModel.addNewActivity(date: date, rate: rate)
+                    viewModel.addNewActivity(habit: activity, date: date, rate: rate)
                     dismiss()
                 })
             }
@@ -46,7 +47,8 @@ struct NewActivityView: View {
 }
 
 struct NewActivityView_Previews: PreviewProvider {
+    static let dummyData = Habit(name: "", description: "", icone: "", repeatIn: .oneTime, priority: .high)
     static var previews: some View {
-        NewActivityView(viewModel: HabitViewModel())
+        NewActivityView(viewModel: HabitViewModel(), activity: dummyData)
     }
 }
