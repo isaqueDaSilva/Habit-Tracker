@@ -16,6 +16,15 @@ class HabitViewModel: ObservableObject {
         }
     }
     
+    @Published var searchTerm: String = ""
+    
+    var search: [Habit] {
+        guard !searchTerm.isEmpty else { return habits }
+        return habits.filter { $0.name.contains(searchTerm) }
+    }
+    
+    @Published var progress: CGFloat = 0
+    
     init() {
         if let saveHabit = UserDefaults.standard.data(forKey: "Habit") {
             if let decoderHabits = try? JSONDecoder().decode([Habit].self, from: saveHabit) {

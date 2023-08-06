@@ -10,18 +10,12 @@ import SwiftUI
 struct ContentView: View {
     @StateObject var viewModel = HabitViewModel()
     
-    @State private var searchTerm: String = ""
     @State private var showingNewHabitView = false
-    
-    var search: [Habit] {
-        guard !searchTerm.isEmpty else { return viewModel.habits }
-        return viewModel.habits.filter { $0.name.contains(searchTerm) }
-    }
 
     var body: some View {
         NavigationView {
             List {
-                ForEach(search) { search in
+                ForEach(viewModel.search) { search in
                     NavigationLink(destination: {
                         DetailView(viewModel: viewModel, activity: search, name: search.name, description: search.description, icone: search.icone, repeatIn: search.repeatIn, priority: search.priority, activityRecord: search.activityRecord)
                     }, label: {
@@ -32,7 +26,7 @@ struct ContentView: View {
                 .onDelete(perform: viewModel.removeRows)
             }
             .navigationTitle("Habit Tracker")
-            .searchable(text: $searchTerm, prompt: "Search Habit")
+            .searchable(text: $viewModel.searchTerm, prompt: "Search Habit")
             .toolbar {
                 Button(action: {
                     showingNewHabitView = true

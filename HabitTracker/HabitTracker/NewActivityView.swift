@@ -32,6 +32,7 @@ struct NewActivityView: View {
             .toolbar {
                 Button("OK", action: {
                     viewModel.addNewActivity(habit: activity, date: date, rate: rate)
+                    viewModel.progress += 1
                     dismiss()
                 })
             }
