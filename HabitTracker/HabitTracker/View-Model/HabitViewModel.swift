@@ -16,11 +16,18 @@ class HabitViewModel: ObservableObject {
         }
     }
     
+    //Search Term in Habit Array on Main View
     @Published var searchTerm: String = ""
     
     var search: [Habit] {
         guard !searchTerm.isEmpty else { return habits }
         return habits.filter { $0.name.contains(searchTerm) }
+    }
+    
+    var dateFormatter: DateFormatter {
+        let formatter = DateFormatter()
+        formatter.dateStyle = .short
+        return formatter
     }
     
     @Published var progress: CGFloat = 0
