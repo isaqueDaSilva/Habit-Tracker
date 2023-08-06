@@ -15,9 +15,8 @@ class HabitViewModel: ObservableObject {
             }
         }
     }
-    
-    //Search Term in Habit Array on Main View
     @Published var searchTerm: String = ""
+    @Published var progress: CGFloat = 0
     
     var search: [Habit] {
         guard !searchTerm.isEmpty else { return habits }
@@ -29,8 +28,6 @@ class HabitViewModel: ObservableObject {
         formatter.dateStyle = .short
         return formatter
     }
-    
-    @Published var progress: CGFloat = 0
     
     init() {
         if let saveHabit = UserDefaults.standard.data(forKey: "Habit") {
