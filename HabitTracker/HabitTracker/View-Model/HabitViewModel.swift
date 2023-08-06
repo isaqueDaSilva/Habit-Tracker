@@ -15,7 +15,9 @@ class HabitViewModel: ObservableObject {
             }
         }
     }
+    
     @Published var searchTerm: String = ""
+    
     @Published var progress: CGFloat = 0
     
     var search: [Habit] {
