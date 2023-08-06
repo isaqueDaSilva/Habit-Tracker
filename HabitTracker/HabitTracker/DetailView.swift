@@ -18,42 +18,57 @@ struct DetailView: View {
     var repeatIn: Repeat
     var priority: Priority
     var activityRecord: [Habit.ActivityRecord]
+    var previousActivity: [Habit.ActivityRecord]
     
     var body: some View {
-        NavigationView {
-            List{
-                Section {
-                    ZStack {
-                        ProgressBar(progress: $viewModel.progress, to: repeatIn.rawValue, color: .blue)
-                            .padding([.top, .bottom, .horizontal])
-                        
+        List{
+            Section {
+                ZStack {
+                    
+                    Circle()
+                        .stroke(.black.opacity(0.3), style: StrokeStyle(lineWidth: 20))
+                        .padding([.top, .bottom, .horizontal])
+                    
+                    Circle()
+                        .trim(from: 0, to: viewModel.progress(activityRecord: activityRecord, repeatIn: repeatIn))
+                        .stroke(.blue, style: StrokeStyle(lineWidth: 20))
+                        .rotationEffect(Angle(degrees: -90))
+                        .padding([.top, .bottom, .horizontal])
+                    
+                    VStack {
                         Image(systemName: icone)
                             .font(.system(size: 80))
+                        
+                        Text("\(activityRecord.count)/\(repeatIn.rawValue)")
+                            .font(.headline.bold())
+                            .padding(.top)
                     }
                 }
-                
-                if !description.isEmpty {
-                    Section("Description:") {
-                        Text(description)
-                    }
+            }
+            
+            if !description.isEmpty {
+                Section("Description:") {
+                    Text(description)
+                }
+            }
+            
+            Section("Detail:") {
+                HStack {
+                    Text("Repeat In:")
+                    Spacer()
+                    Text("\(repeatIn.rawValue)x a Week")
+                        .foregroundColor(.gray)
                 }
                 
-                Section("Detail:") {
-                    HStack {
-                        Text("Repeat In:")
-                        Spacer()
-                        Text("\(repeatIn.rawValue)x a Week")
-                            .foregroundColor(.gray)
-                    }
-                    
-                    HStack {
-                        Text("Priority:")
-                        Spacer()
-                        Text(priority.rawValue)
-                            .foregroundColor(.gray)
-                    }
+                HStack {
+                    Text("Priority:")
+                    Spacer()
+                    Text(priority.rawValue)
+                        .foregroundColor(.gray)
                 }
-                
+            }
+            
+            if !activityRecord.isEmpty {
                 Section("Activity Records") {
                     ForEach(activityRecord) { activity in
                         HStack {
@@ -63,6 +78,23 @@ struct DetailView: View {
                         }
                     }
                 }
+            }
+            
+            Section("Previous Activity") {
+                NavigationLink(destination: {
+                    List {
+                        ForEach(previousActivity) { previous in
+                            HStack {
+                                Text(viewModel.dateFormatter.string(from: previous.date))
+                                Spacer()
+                                Text(previous.rate.rawValue)
+                            }
+                        }
+                    }
+                    .navigationTitle("Previous Activity")
+                }, label: {
+                    Text("Previous Activity")
+                })
             }
         }
         .navigationTitle(name)
@@ -83,6 +115,6 @@ struct DetailView: View {
 struct DetailView_Previews: PreviewProvider {
     static let dummyData = Habit(name: "", description: "", icone: "", repeatIn: .oneTime, priority: .high)
     static var previews: some View {
-        DetailView(viewModel: HabitViewModel(), activity: dummyData, name: "", description: "", icone: "", repeatIn: .oneTime, priority: .high, activityRecord: [Habit.ActivityRecord]())
+        DetailView(viewModel: HabitViewModel(), activity: dummyData, name: "", description: "", icone: "", repeatIn: .oneTime, priority: .high, activityRecord: [Habit.ActivityRecord](), previousActivity: [Habit.ActivityRecord]())
     }
 }

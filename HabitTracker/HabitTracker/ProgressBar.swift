@@ -17,7 +17,6 @@ struct ProgressBar: View {
             Circle()
                 .stroke(lineWidth: 20)
                 .fill(.black.opacity(0.2))
-                .foregroundColor(.gray)
             
             withAnimation {
                 Circle()

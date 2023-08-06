@@ -18,8 +18,6 @@ class HabitViewModel: ObservableObject {
     
     @Published var searchTerm: String = ""
     
-    @Published var progress: CGFloat = 0
-    
     var search: [Habit] {
         guard !searchTerm.isEmpty else { return habits }
         return habits.filter { $0.name.contains(searchTerm) }
@@ -56,6 +54,11 @@ class HabitViewModel: ObservableObject {
         
         if let i = habits.firstIndex(of: habit) {
             habits[i].activityRecord.append(activitys)
+            habits[i].previousActivity.append(activitys)
         }
+    }
+    
+    func progress(activityRecord: [Habit.ActivityRecord], repeatIn: Repeat) -> CGFloat {
+        return CGFloat(activityRecord.count / repeatIn.rawValue)
     }
 }

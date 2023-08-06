@@ -17,7 +17,7 @@ struct ContentView: View {
             List {
                 ForEach(viewModel.search) { search in
                     NavigationLink(destination: {
-                        DetailView(viewModel: viewModel, activity: search, name: search.name, description: search.description, icone: search.icone, repeatIn: search.repeatIn, priority: search.priority, activityRecord: search.activityRecord)
+                        DetailView(viewModel: viewModel, activity: search, name: search.name, description: search.description, icone: search.icone, repeatIn: search.repeatIn, priority: search.priority, activityRecord: search.activityRecord, previusActivity: search.previusActivity)
                     }, label: {
                         Image(systemName: search.icone)
                         Text(search.name)

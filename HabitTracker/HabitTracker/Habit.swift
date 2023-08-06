@@ -29,6 +29,7 @@ struct Habit: Identifiable, Codable, Equatable {
     let repeatIn: Repeat
     let priority: Priority
     var activityRecord = [ActivityRecord]()
+    var previousActivity = [ActivityRecord]()
     
     static var iconeSystemName = [
         "book.fill",
