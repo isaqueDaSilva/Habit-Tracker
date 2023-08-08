@@ -19,8 +19,6 @@ class HabitViewModel: ObservableObject {
     
     @Published var searchTerm: String = ""
     
-    @Published var showingAlert = false
-    
     let timer = Timer.publish(every: 1.0, on: .main, in: .common).autoconnect()
     
     var search: [Habit] {
@@ -76,15 +74,6 @@ class HabitViewModel: ObservableObject {
                 habits[i].activityRecord.removeAll()
                 habits[i].timeRemaining = 60
                 habits[i].progress = 0
-            }
-        }
-    }
-    
-    func alert(habit: Habit) {
-        let habit = habit
-        if let i = habits.firstIndex(of: habit) {
-            if Int(habits[i].progress) == habits[i].repeatIn.rawValue {
-                self.showingAlert = true
             }
         }
     }

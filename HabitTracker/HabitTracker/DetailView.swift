@@ -24,29 +24,48 @@ struct DetailView: View {
     
     var body: some View {
         List{
-            Section {
-                ZStack {
-                    
-                    Circle()
-                        .stroke(.black.opacity(0.3), style: StrokeStyle(lineWidth: 20))
-                        .padding([.top, .bottom, .horizontal])
-                    
-                    Circle()
-                        .trim(from: 0, to: progress / CGFloat(repeatIn.rawValue))
-                        .stroke(.blue, style: StrokeStyle(lineWidth: 20))
-                        .rotationEffect(Angle(degrees: -90))
-                        .animation(Animation.easeInOut(duration: 2), value: progress)
-                        .padding([.top, .bottom, .horizontal])
-                    
-                    VStack {
-                        Image(systemName: icone)
-                            .font(.system(size: 80))
-                        
-                        Text("\(activityRecord.count)/\(repeatIn.rawValue)")
-                            .font(.headline.bold())
-                            .padding(.top)
-                        Text("Time Remaining: \(timeRemaining)")
+            if Int(progress) == repeatIn.rawValue {
+                Section {
+                    HStack {
+                        Text("🥳")
+                            .padding()
+                            .font(.system(size: 30))
+                            .background {
+                                Rectangle()
+                                    .cornerRadius(10)
+                            }
+                        VStack(alignment: .center){
+                            Text("Good Week!")
+                                .font(.title3.bold())
+                            Text("Congratulations, you've completed your activity goal for this week. Keep it up 😉")
+                                .font(.subheadline.bold())
+                                .multilineTextAlignment(.center)
+                        }
                     }
+                    .frame(maxHeight: 100)
+                }
+            }
+            
+            ZStack {
+                Circle()
+                    .stroke(.black.opacity(0.3), style: StrokeStyle(lineWidth: 20))
+                    .padding([.top, .bottom, .horizontal])
+                
+                Circle()
+                    .trim(from: 0, to: progress / CGFloat(repeatIn.rawValue))
+                    .stroke(.blue, style: StrokeStyle(lineWidth: 16, lineCap: .round, lineJoin: .round))
+                    .rotationEffect(Angle(degrees: -90))
+                    .animation(Animation.easeInOut(duration: 2), value: progress)
+                    .padding([.top, .bottom, .horizontal])
+                
+                VStack {
+                    Image(systemName: icone)
+                        .font(.system(size: 80))
+                    
+                    Text("\(activityRecord.count)/\(repeatIn.rawValue)")
+                        .font(.headline.bold())
+                        .padding(.top)
+                    Text("Time Remaining: \(timeRemaining)")
                 }
             }
             
@@ -98,13 +117,6 @@ struct DetailView: View {
         }
         .sheet(isPresented: $recordNewActivity) {
             NewActivityView(viewModel: viewModel, activity: activity, previousActivity: previousActivity)
-        }
-        .onAppear {
-            viewModel.alert(habit: activity)
-        }
-        .alert("Good Week 🥳", isPresented: $viewModel.showingAlert) {
-        } message: {
-            Text("Congratulations, you've completed your activity goal for this week!\nKeep it up😉")
         }
     }
 }
