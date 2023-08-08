@@ -19,7 +19,7 @@ struct NewActivityView: View {
         NavigationView {
             List {
                 Section("New Record") {
-                    DatePicker("Date:", selection: $date, displayedComponents: .date)
+                    DatePicker("Date:", selection: $date, in: ...Date.now, displayedComponents: .date)
                     Picker("Rate", selection: $rate) {
                         ForEach(Rate.allCases, id: \.self) {
                             Text($0.rawValue)
@@ -32,7 +32,7 @@ struct NewActivityView: View {
                     Section("Previous Activity") {
                         NavigationLink(destination: {
                             List {
-                                Section("Activitys") {
+                                Section("Activitys Record") {
                                     ForEach(previousActivity) { previous in
                                         HStack {
                                             Text(viewModel.dateFormatter.string(from: previous.date))
