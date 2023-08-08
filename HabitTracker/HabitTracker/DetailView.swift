@@ -19,6 +19,8 @@ struct DetailView: View {
     var priority: Priority
     var activityRecord: [Habit.ActivityRecord]
     var previousActivity: [Habit.ActivityRecord]
+    var timeRemaining: Int
+    var progress: CGFloat
     
     var body: some View {
         List{
@@ -30,9 +32,10 @@ struct DetailView: View {
                         .padding([.top, .bottom, .horizontal])
                     
                     Circle()
-                        .trim(from: 0, to: viewModel.progress(activityRecord: activityRecord, repeatIn: repeatIn))
+                        .trim(from: 0, to: progress / CGFloat(repeatIn.rawValue))
                         .stroke(.blue, style: StrokeStyle(lineWidth: 20))
                         .rotationEffect(Angle(degrees: -90))
+                        .animation(Animation.easeInOut(duration: 2), value: progress)
                         .padding([.top, .bottom, .horizontal])
                     
                     VStack {
@@ -42,6 +45,7 @@ struct DetailView: View {
                         Text("\(activityRecord.count)/\(repeatIn.rawValue)")
                             .font(.headline.bold())
                             .padding(.top)
+                        Text("Time Remaining: \(timeRemaining)")
                     }
                 }
             }
@@ -79,26 +83,12 @@ struct DetailView: View {
                     }
                 }
             }
-            
-            Section("Previous Activity") {
-                NavigationLink(destination: {
-                    List {
-                        ForEach(previousActivity) { previous in
-                            HStack {
-                                Text(viewModel.dateFormatter.string(from: previous.date))
-                                Spacer()
-                                Text(previous.rate.rawValue)
-                            }
-                        }
-                    }
-                    .navigationTitle("Previous Activity")
-                }, label: {
-                    Text("Previous Activity")
-                })
-            }
         }
         .navigationTitle(name)
         .navigationBarTitleDisplayMode(.inline)
+        .onReceive(viewModel.timer, perform: { _ in
+            viewModel.updateWeek(habit: activity)
+        })
         .toolbar {
             Button(action: {
                 recordNewActivity = true
@@ -107,7 +97,14 @@ struct DetailView: View {
             })
         }
         .sheet(isPresented: $recordNewActivity) {
-            NewActivityView(viewModel: viewModel, activity: activity)
+            NewActivityView(viewModel: viewModel, activity: activity, previousActivity: previousActivity)
+        }
+        .onAppear {
+            viewModel.alert(habit: activity)
+        }
+        .alert("Good Week 🥳", isPresented: $viewModel.showingAlert) {
+        } message: {
+            Text("Congratulations, you've completed your activity goal for this week!\nKeep it up😉")
         }
     }
 }
@@ -115,6 +112,6 @@ struct DetailView: View {
 struct DetailView_Previews: PreviewProvider {
     static let dummyData = Habit(name: "", description: "", icone: "", repeatIn: .oneTime, priority: .high)
     static var previews: some View {
-        DetailView(viewModel: HabitViewModel(), activity: dummyData, name: "", description: "", icone: "", repeatIn: .oneTime, priority: .high, activityRecord: [Habit.ActivityRecord](), previousActivity: [Habit.ActivityRecord]())
+        DetailView(viewModel: HabitViewModel(), activity: dummyData, name: "", description: "", icone: "", repeatIn: .oneTime, priority: .high, activityRecord: [Habit.ActivityRecord](), previousActivity: [Habit.ActivityRecord](), timeRemaining: 0, progress: 0)
     }
 }

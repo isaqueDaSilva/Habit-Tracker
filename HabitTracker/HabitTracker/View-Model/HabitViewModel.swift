@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import SwiftUI
 
 class HabitViewModel: ObservableObject {
     @Published var habits = [Habit]() {
@@ -17,6 +18,10 @@ class HabitViewModel: ObservableObject {
     }
     
     @Published var searchTerm: String = ""
+    
+    @Published var showingAlert = false
+    
+    let timer = Timer.publish(every: 1.0, on: .main, in: .common).autoconnect()
     
     var search: [Habit] {
         guard !searchTerm.isEmpty else { return habits }
@@ -55,10 +60,32 @@ class HabitViewModel: ObservableObject {
         if let i = habits.firstIndex(of: habit) {
             habits[i].activityRecord.append(activitys)
             habits[i].previousActivity.append(activitys)
+            
+            if Int(habits[i].progress) < habits[i].repeatIn.rawValue {
+                habits[i].progress += 1
+            }
         }
     }
     
-    func progress(activityRecord: [Habit.ActivityRecord], repeatIn: Repeat) -> CGFloat {
-        return CGFloat(activityRecord.count / repeatIn.rawValue)
+    func updateWeek(habit: Habit) {
+        let habit = habit
+        if let i = habits.firstIndex(of: habit) {
+            if habits[i].timeRemaining > 0 {
+                habits[i].timeRemaining -= 1
+            } else {
+                habits[i].activityRecord.removeAll()
+                habits[i].timeRemaining = 60
+                habits[i].progress = 0
+            }
+        }
+    }
+    
+    func alert(habit: Habit) {
+        let habit = habit
+        if let i = habits.firstIndex(of: habit) {
+            if Int(habits[i].progress) == habits[i].repeatIn.rawValue {
+                self.showingAlert = true
+            }
+        }
     }
 }

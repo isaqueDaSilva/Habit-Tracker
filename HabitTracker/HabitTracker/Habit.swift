@@ -30,6 +30,8 @@ struct Habit: Identifiable, Codable, Equatable {
     let priority: Priority
     var activityRecord = [ActivityRecord]()
     var previousActivity = [ActivityRecord]()
+    var timeRemaining = 60
+    var progress: CGFloat = 0
     
     static var iconeSystemName = [
         "book.fill",

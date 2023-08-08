@@ -11,13 +11,14 @@ struct NewActivityView: View {
     @Environment(\.dismiss) var dismiss
     @ObservedObject var viewModel: HabitViewModel
     let activity: Habit
+    var previousActivity: [Habit.ActivityRecord]
     
     @State private var date = Date.now
     @State private var rate: Rate = .good
     var body: some View {
         NavigationView {
             List {
-                Section {
+                Section("New Record") {
                     DatePicker("Date:", selection: $date, displayedComponents: .date)
                     Picker("Rate", selection: $rate) {
                         ForEach(Rate.allCases, id: \.self) {
@@ -25,6 +26,27 @@ struct NewActivityView: View {
                         }
                     }
                     .pickerStyle(.segmented)
+                }
+                
+                if !previousActivity.isEmpty {
+                    Section("Previous Activity") {
+                        NavigationLink(destination: {
+                            List {
+                                Section("Activitys") {
+                                    ForEach(previousActivity) { previous in
+                                        HStack {
+                                            Text(viewModel.dateFormatter.string(from: previous.date))
+                                            Spacer()
+                                            Text(previous.rate.rawValue)
+                                        }
+                                    }
+                                }
+                            }
+                            .navigationTitle("Previous Activity")
+                        }, label: {
+                            Text("Previous Activity")
+                        })
+                    }
                 }
             }
             .navigationTitle("New Activity")
@@ -49,6 +71,6 @@ struct NewActivityView: View {
 struct NewActivityView_Previews: PreviewProvider {
     static let dummyData = Habit(name: "", description: "", icone: "", repeatIn: .oneTime, priority: .high)
     static var previews: some View {
-        NewActivityView(viewModel: HabitViewModel(), activity: dummyData)
+        NewActivityView(viewModel: HabitViewModel(), activity: dummyData, previousActivity: [Habit.ActivityRecord]())
     }
 }
