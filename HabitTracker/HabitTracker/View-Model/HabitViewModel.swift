@@ -72,7 +72,7 @@ class HabitViewModel: ObservableObject {
                 habits[i].timeRemaining -= 1
             } else {
                 habits[i].activityRecord.removeAll()
-                habits[i].timeRemaining = 60
+                habits[i].timeRemaining = 7
                 habits[i].progress = 0
             }
         }

@@ -65,7 +65,8 @@ struct DetailView: View {
                     Text("\(activityRecord.count)/\(repeatIn.rawValue)")
                         .font(.headline.bold())
                         .padding(.top)
-                    Text("Time Remaining: \(timeRemaining)")
+                    Text("Time Remaining: \(timeRemaining) \(timeRemaining > 1 ? "Days" : "Day")")
+                        .font(.subheadline.bold())
                 }
             }
             
