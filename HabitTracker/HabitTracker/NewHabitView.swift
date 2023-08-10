@@ -57,6 +57,7 @@ struct NewHabitView: View {
                 }, label: {
                     Text("OK")
                 })
+                .disabled(name.isEmpty)
             }
             .toolbar {
                 ToolbarItem(placement: .navigationBarLeading) {
