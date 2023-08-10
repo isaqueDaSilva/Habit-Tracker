@@ -6,7 +6,6 @@
 //
 
 import Foundation
-import SwiftUI
 
 class HabitViewModel: ObservableObject {
     @Published var habits = [Habit]() {
@@ -19,7 +18,7 @@ class HabitViewModel: ObservableObject {
     
     @Published var searchTerm: String = ""
     
-    let timer = Timer.publish(every: 1.0, on: .main, in: .common).autoconnect()
+    let timer = Timer.publish(every: 86_400, on: .main, in: .common).autoconnect()
     
     var search: [Habit] {
         guard !searchTerm.isEmpty else { return habits }
