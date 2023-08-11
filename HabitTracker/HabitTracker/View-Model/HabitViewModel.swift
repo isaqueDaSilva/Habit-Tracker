@@ -16,6 +16,12 @@ class HabitViewModel: ObservableObject {
         }
     }
     
+    @Published var name: String = ""
+    @Published var description: String = ""
+    @Published var icone: String = Habit.iconeSystemName[0]
+    @Published var repeatIn: Repeat = .oneTime
+    @Published var priority: Priority = .high
+    
     @Published var searchTerm: String = ""
     
     let timer = Timer.publish(every: 86_400, on: .main, in: .common).autoconnect()
@@ -48,6 +54,11 @@ class HabitViewModel: ObservableObject {
     func addNewHabit(name: String, description: String, icone: String, repeatIn: Repeat, priority: Priority) {
         let habit = Habit(name: name, description: description, icone: icone, repeatIn: repeatIn, priority: priority)
         habits.append(habit)
+        self.name = ""
+        self.description = ""
+        self.icone = Habit.iconeSystemName[0]
+        self.repeatIn = .oneTime
+        self.priority = .high
     }
     
     func addNewActivity(habit: Habit, date: Date, rate: Rate) {

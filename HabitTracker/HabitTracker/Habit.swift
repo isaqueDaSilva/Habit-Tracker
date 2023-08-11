@@ -21,7 +21,7 @@ struct Habit: Identifiable, Codable, Equatable {
         let rate: Rate
     }
     
-    var id: Int = UUID().hashValue
+    var id = UUID()
     
     let name: String
     let description: String

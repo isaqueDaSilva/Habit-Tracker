@@ -11,32 +11,26 @@ struct NewHabitView: View {
     @Environment(\.dismiss) var dismiss
     @ObservedObject var viewModel: HabitViewModel
     
-    @State private var name: String = ""
-    @State private var description: String = ""
-    @State private var icone: String = Habit.iconeSystemName[0]
-    @State private var repeatIn: Repeat = .oneTime
-    @State private var priority: Priority = .high
-    
     var body: some View {
         NavigationView {
             List {
                 Section("Details:") {
-                    TextField("Insert Name", text: $name)
+                    TextField("Insert Name", text: $viewModel.name)
                     
-                    Picker("Priority:", selection: $priority) {
+                    Picker("Priority:", selection: $viewModel.priority) {
                         ForEach(Priority.allCases, id: \.self) {
                             Text($0.rawValue)
                         }
                     }
                     
-                    Picker("Repeat:", selection: $repeatIn) {
+                    Picker("Repeat:", selection: $viewModel.repeatIn) {
                         ForEach(Repeat.allCases, id: \.self) {
                             Text("\($0.rawValue)x a Week")
                         }
                     }
                     .pickerStyle(.navigationLink)
                     
-                    Picker("Select the Habit Icone:", selection: $icone) {
+                    Picker("Select the Habit Icone:", selection: $viewModel.icone) {
                         ForEach(Habit.iconeSystemName, id: \.self) {
                             Image(systemName: $0)
                         }
@@ -45,19 +39,19 @@ struct NewHabitView: View {
                 }
                 
                 Section("Description") {
-                    TextEditor(text: $description)
+                    TextEditor(text: $viewModel.description)
                 }
             }
             .navigationTitle("New Habit")
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 Button(action: {
-                    viewModel.addNewHabit(name: name, description: description, icone: icone, repeatIn: repeatIn, priority: priority)
+                    viewModel.addNewHabit(name: viewModel.name, description: viewModel.description, icone: viewModel.icone, repeatIn: viewModel.repeatIn, priority: viewModel.priority)
                     dismiss()
                 }, label: {
                     Text("OK")
                 })
-                .disabled(name.isEmpty)
+                .disabled(viewModel.name.isEmpty)
             }
             .toolbar {
                 ToolbarItem(placement: .navigationBarLeading) {
